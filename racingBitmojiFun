@@ -1,0 +1,122 @@
+var bitmojiX = (25);
+var bitmojiY = (100);
+var bitmojiSpeed = random(1,10);
+
+var bunnyX = (-105);
+var bunnyY = (303);
+var bunnySpeed = random(1,10);
+
+function drawBackground(shade) {
+    background(shade, shade, shade);
+}
+
+//bitmoji face
+function drawFace() {
+    fill(247, 237, 207);
+    ellipse(bitmojiX, bitmojiY, 165, 165);
+}
+
+//bitmoji hair
+function drawHair() {
+    noStroke();
+    fill(207, 173, 99);
+    rect(bitmojiX-93,bitmojiY-83,33,223);
+    ellipse(bitmojiX-3,bitmojiY-77,186,62);
+    rect(bitmojiX+55,bitmojiY-83,33,223);
+}
+
+//draw sunglasses
+function drawGlasses() {
+    stroke(0, 0, 0);
+    fill(207, 207, 207);
+    ellipse(bitmojiX-33,bitmojiY-99,50,50);
+    ellipse(bitmojiX+30,bitmojiY-99,50,50);
+    line(bitmojiX-14,bitmojiY-102,bitmojiX+16,bitmojiY-102);
+    line(bitmojiX+53,bitmojiY-100,bitmojiX+88,bitmojiY-33);
+    line(bitmojiX-57,bitmojiY-99,bitmojiX-94,bitmojiY-41);
+}
+
+//draw eyes
+function drawEyes() {
+    stroke(0, 0, 0);
+    fill(135, 207, 240);
+    ellipse(bitmojiX-32,bitmojiY-20,33,14);
+    ellipse(bitmojiX+22,bitmojiY-20,33,14);
+    fill(0, 0, 0);
+    ellipse(bitmojiX-32,bitmojiY-21,-17,13);
+    ellipse(bitmojiX+22,bitmojiY-21,-17,13);
+    fill(247, 237, 207);
+}
+
+//draw nose
+function drawNose() {
+    stroke(158, 138, 109);
+    arc(bitmojiX-9,bitmojiY+10,51,23,-80,58);
+}
+
+//draw mouth
+function drawMouth() {
+    stroke(209, 205, 205);
+    fill(255, 255, 255);
+    line(bitmojiX+24,bitmojiY+32,bitmojiX-34,bitmojiY+32);
+    arc(bitmojiX-5, bitmojiY+34, 61, 43, 1, 180);
+}
+
+//draws entire bitmoji
+function drawBitmoji() {
+    drawFace();
+    drawHair();
+    drawGlasses();
+    drawEyes();
+    drawNose();
+    drawMouth();
+    
+    bitmojiX = bitmojiX+10+bitmojiSpeed;
+}
+
+//draws bunny ears
+function drawBunnyEars() {
+    ellipse(bunnyX+75, bunnyY-80, 60, 120);  // left ear
+    ellipse(bunnyX+165, bunnyY-80, 60, 120); // right ear
+}
+
+//draws bunny face
+function drawBunnyFace() {
+    ellipse(bunnyX+125, bunnyY+20, 150, 150);    // face
+}
+
+//draws bunny eyes
+function drawBunnyEyes(eyeSize) {
+    fill(0, 0, 0);
+    ellipse(bunnyX+95, bunnyY, eyeSize, eyeSize);  // left eye
+    ellipse(bunnyX+155, bunnyY, eyeSize, eyeSize);  // right eye
+}
+
+//draws bunny mouth
+function drawBunnyMouth() {
+    line(bunnyX+75, bunnyY+50, bunnyX+175, bunnyY+50);   // mouth
+}
+
+//draws bunny teeth
+function drawBunnyTeeth(toothLength) {
+    noFill();
+    rect(bunnyX+110, bunnyY+50, 15, toothLength); // left tooth
+    rect(bunnyX+125, bunnyY+50, 15, toothLength); // right tooth
+}
+    
+//draws entire bunny
+function drawBunny(toothSize) {
+    drawBunnyEars();
+    drawBunnyFace();
+    drawBunnyEyes(15);
+    drawBunnyMouth();
+    drawBunnyTeeth(toothSize);
+
+    bunnyX=bunnyX+10+bunnySpeed;
+}
+
+draw = function() {
+    drawBackground(120);
+    drawBitmoji();
+    drawBunny(20);
+};
